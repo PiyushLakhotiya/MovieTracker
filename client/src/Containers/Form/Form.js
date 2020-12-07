@@ -46,6 +46,19 @@ class Form extends Component {
                 label = "Status" 
                 changed = {(event) => this.onChangedHandler(event, 'status')}/>
             <Input 
+                type="text" 
+                placeholder="description" 
+                name="description" 
+                label = "Description" 
+                changed = {(event) => this.onChangedHandler(event, 'description')}/>
+            <Input 
+                type="text" 
+                placeholder="Sci-fi, Action, Adventure etc." 
+                name="genre" 
+                label = "Genre" 
+                changed = {(event) => this.onChangedHandler(event, 'genre')}/>
+            
+            <Input 
                 type="submit" />
         </form>
         )
