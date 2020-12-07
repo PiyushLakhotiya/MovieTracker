@@ -8,7 +8,7 @@ const input = props => {
             val = (
                 <div className={classes.Field}>
                     <label className={classes.Label}>{props.label}</label>
-                    <input className={classes.Input} type = {props.type} placeholder = {props.placeholder} required = {props.required} />
+                    <input className={classes.Input} type = {props.type} placeholder = {props.placeholder} required = {props.required} onChange={props.changed} />
                 </div>
             );
             break;
