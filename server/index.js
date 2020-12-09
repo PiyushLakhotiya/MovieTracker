@@ -3,17 +3,17 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
-import postRoutes from './Routes/posts.js';
+import postRoutes from './Routes/post.js';
+import categoryRoutes from './Routes/category.js';
 
 const app = express();
-
 
 app.use(bodyParser.json({limit: '10mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use(cors());
 
 app.use('/post', postRoutes);
-
+app.use('/category', categoryRoutes);
 const CONNECTION_URL = 'mongodb://localhost:27017/movie_info';
 const PORT = process.env.PORT || 5000;
 
