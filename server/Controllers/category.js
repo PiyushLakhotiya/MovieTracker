@@ -22,14 +22,3 @@ export const showMovies = async (req, res) => {
             })
 }
 
-// const type = req.body.type;
-//     Category.find()
-//         .then(data => {
-//             let isTypePresent = data.findIndex(type);
-//             if(isTypePresent === -1) {
-//                 let newData = [...data];
-//                 newData.push(type);
-//                 await Category.updateOne({category: data}, {category: newData});
-//             }
-//         })
-//         .catch(error => console.log(error));
