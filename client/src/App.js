@@ -10,7 +10,7 @@ class App extends Component {
     return (
     <>
       <Navbar />
-      {/* <Cards /> */}
+      <Cards />
       <Form />
     </>
     );

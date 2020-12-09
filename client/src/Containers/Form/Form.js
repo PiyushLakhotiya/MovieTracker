@@ -9,13 +9,15 @@ class Form extends Component {
         title: '',
         type: '',
         description: '',
-        genre: ''
+        genre: '',
+        api_key: 'cb2618210b01a948b2a5286ab2820f23'
     }
-
+        
     onChangedHandler = (event, name) => {
         this.setState(
             { [name] : event.target.value }
         );
+        console.log(event.target.name);
     }
     onSubmit = async (event) => {
         event.preventDefault();
@@ -32,7 +34,8 @@ class Form extends Component {
                 placeholder="eg. Inception, 13 Reason Why etc,"
                 name="title" 
                 label = "Movie/Show Name" 
-                changed = {(event) => this.onChangedHandler(event, 'title')}/>
+                changed = {(event) => this.onChangedHandler(event, 'title')}
+                />
             <Input 
                 type="text" 
                 placeholder="eg. Hollywood, Anime, Netflix etc." 
