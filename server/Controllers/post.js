@@ -7,6 +7,16 @@ export const createPost = async (req, res) => {
     try {
        await newPost.save();
        const type = req.body.category;
+       await PostMessage.find()
+                .then(data => {
+                    console.log(data);
+                    if(data.movie_id === body.movie_id) {
+                        res.status(200).json({message: 'Already Saved'});
+                    }
+                })
+                .catch(error => {
+                        res.status(404).json({message: error.message});
+                });
        await Category.find()
         .then(data => {
             let isTypePresent = data.findIndex(type);
