@@ -3,6 +3,7 @@ import classes from './Navbar.css'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const navbar = props => (
+    <div className="navigation">
     <Navbar bg="none" expand="lg">
         <Container>
             <Navbar.Brand >YMDB</Navbar.Brand>
@@ -15,6 +16,8 @@ const navbar = props => (
             </Navbar.Collapse>
         </Container>
     </Navbar>
+    </div>
+
 )
 
 export default navbar;

@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
-
+import axios from 'axios';
 import postRoutes from './Routes/posts.js';
 
 const app = express();
