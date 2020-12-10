@@ -1,17 +1,19 @@
 import React from 'react';
-import classes from './Navbar.module.css'
-import { Navbar, Nav } from 'react-bootstrap';
+import classes from './Navbar.css'
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const navbar = props => (
-    <Navbar bg="primary" expand="lg">
-        <Navbar.Brand className = {classes.navbarBrand} >Website Name</Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className={classes.nav}>
-                <Nav.Link href="#">Home</Nav.Link>
-                <Nav.Link href="#">About</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
+    <Navbar bg="none" expand="lg">
+        <Container>
+            <Navbar.Brand >YMDB</Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className='ml-auto'>
+                    <Nav.Link href="#">Home</Nav.Link>
+                    <Nav.Link href="#">About</Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+        </Container>
     </Navbar>
 )
 
