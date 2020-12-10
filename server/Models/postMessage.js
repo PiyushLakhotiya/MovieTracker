@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema({
     title_id: Number,
     type:String,
     category: String,
-    image: String,
+    poster: String,
     genre: String,
     status:String,
     date: {
