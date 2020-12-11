@@ -11,13 +11,7 @@ class Form extends Component {
         type: '',
         description: '',
         genre: '',
-<<<<<<< HEAD
-        discription: '',
-        url: '',
-        name: ''
-=======
         api_key: 'cb2618210b01a948b2a5286ab2820f23'
->>>>>>> dadf7bfe1d8da2e84f873ee37b9c5ca2a3b4686f
     }
         
     onChangedHandler = (event, name) => {
@@ -49,65 +43,6 @@ class Form extends Component {
 
         const img = `https://image.tmdb.org/t/p/w500${this.state.url}`;
         return(
-<<<<<<< HEAD
-            <div>
-                <div className="row">
-                    <div className="col-6">
-                        <form className={classes.Form} onSubmit = {(event) =>this.onSubmit(event)}>
-                            <Input 
-                                type="text"
-                                placeholder="eg. Inception, 13 Reason Why etc,"
-                                name="title" 
-                                label = "Movie/Show Name" 
-                                changed = {(event) => this.onChangedHandler(event, 'title')}/>
-                            <Input 
-                                type="text" 
-                                placeholder="eg. Hollywood, Anime, Netflix etc." 
-                                name="type" 
-                                label = "Movie/Show Type" 
-                                changed = {(event) => this.onChangedHandler(event, 'type')} />
-                            <Input 
-                                type="text" 
-                                placeholder="Completed / Ongoing " 
-                                name="status" 
-                                label = "Status" 
-                                changed = {(event) => this.onChangedHandler(event, 'status')}/>
-                            <Input 
-                                type="text" 
-                                placeholder="description" 
-                                name="description" 
-                                label = "Description" 
-                                changed = {(event) => this.onChangedHandler(event, 'description')}/>
-                            <Input 
-                                type="text" 
-                                placeholder="Sci-fi, Action, Adventure etc." 
-                                name="genre" 
-                                label = "Genre" 
-                                changed = {(event) => this.onChangedHandler(event, 'genre')}/>
-                            
-                            <Input 
-                                type="submit" />
-                        </form>
-                    </div>
-                    <div className="col-6">
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={img} />
-                            <Card.Body>
-                                <Card.Title>{this.state.name}</Card.Title>
-                                <Card.Text>
-                                    {this.state.discription}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-
-                    </div>
-                    
-
-                </div>
-               
-            </div>
-
-=======
         <form className={classes.Form} onSubmit = {(event) =>this.onSubmit(event)}>
             <Input 
                 type="text"
@@ -144,7 +79,6 @@ class Form extends Component {
             <Input 
                 type="submit" />
         </form>
->>>>>>> dadf7bfe1d8da2e84f873ee37b9c5ca2a3b4686f
         )
     }
 }

@@ -3,15 +3,9 @@ body {
   font-family:'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-<<<<<<< HEAD
-  background-color: #353540;
-  /* width: 100vw;
-  height: 100vh; */
-=======
   background-color: lightblue;
   width: 100%;
   height: 100%;
->>>>>>> dadf7bfe1d8da2e84f873ee37b9c5ca2a3b4686f
 }
 
 code {
