@@ -10,9 +10,11 @@ class App extends Component {
   render() {
     return (
     <>
-      <Navbar />
-      <Cards />
-      <Form />
+      <Navbar/>
+      <Switch>
+        <Route exact path="/" component={Cards}></Route>
+        <Route path="/add" component={Form1}></Route>
+      </Switch>
     </>
     );
   }
