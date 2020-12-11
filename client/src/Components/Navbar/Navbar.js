@@ -4,9 +4,9 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const navbar = props => (
     <div className="navigation">
-    <Navbar bg="none" expand="lg">
+    <Navbar bg="dark" expand="lg" fixed="top">
         <Container>
-            <Navbar.Brand >YMDB</Navbar.Brand>
+            <Navbar.Brand >YMDb</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className='ml-auto'>

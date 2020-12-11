@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
-import {Card, Form, Button} from 'react-bootstrap'
+import {Card, Form, Button, Alert} from 'react-bootstrap'
+import Spinner from 'react-bootstrap/Spinner'
 import './AddForm.css'
 import checkIcon from '../../check-circle-solid.svg'
 
@@ -9,12 +10,14 @@ class AddForm extends Component {
     state = {
         title: '',
         type: 'movie',
-        category: '',
-        description: '',
-        discription: '',
+        category: 'Netflix',
         url: '',
-        name: '',
-        cardsJSX: []
+        cardsJSX: [],
+        original_title: '',
+        showAlert: false,
+        loading: false,
+        text: 'Nothing to preview',
+        text_display: true
     }
 
     // onChangedHandler = (event, name) => {
@@ -30,6 +33,8 @@ class AddForm extends Component {
             name = data.name;
         else
             name = data.title;
+        this.setState({original_title: name});
+        this.setState({showAlert: true});
         const dataObj = {
             title: name,
             description: data.overview,
@@ -44,6 +49,10 @@ class AddForm extends Component {
     }
 
     onSubmit = async (event) => {
+        this.setState({text_display: false});
+        this.setState({cardsJSX: []});
+        this.setState({loading: true});
+        console.log("category" ,this.state.category);
         event.preventDefault();
         let a = encodeURI(this.state.title)
         let apiUrl = `https://api.themoviedb.org/3/search/${this.state.type}?api_key=da6c65cb9b8595562d8ed2df20cec5cd&language=en-US&page=1&query=${a}&include_adult=false`
@@ -64,15 +73,31 @@ class AddForm extends Component {
                                 ) : null
                         );
                     })
+                    this.setState({loading: false});
                     this.setState({cardsJSX: [...cardsJSX]})
-        }).catch(err => console.log("error is " ,err))
+                    cardsJSX.length ? console.log("okay") : this.setState({text_display: true, text: 'No results found'})
+
+        }).catch(err => {
+            this.setState({loading: false})
+            this.setState({text_display: true});
+            this.setState({text: 'No results Found'})
+            console.log("error is " ,err)
+        })
     }   
     render() {
             
         let img = `https://image.tmdb.org/t/p/w500${this.state.url}`;
         return(
             <div className="container">
-            <div className="addForm mt-5">
+                {
+                    this.state.showAlert ?   
+                    (
+                        <Alert  variant="primary" className="alert" onClose={() => this.setState({showAlert: false})} dismissible>
+                            {this.state.original_title} added to {this.state.category}
+                        </Alert>
+                    ) : null
+                }
+            <div className="addForm">
                <Form onSubmit={this.onSubmit}>
                     <Form.Group controlId="formBasicEmail">
                         {/* <Form.Label>Type</Form.Label> */}
@@ -99,12 +124,22 @@ class AddForm extends Component {
                     </Form.Group>
 
                     <Button variant="primary" type="submit" className="addFormButton">
-                        Submit
+                        Search
                     </Button>
                 </Form>
                 </div>
-                <i className="fas fa-check-circle"></i>
-
+                {
+                    this.state.text_display ?
+                    (
+                        <div className="nthngToPreview">
+                            {this.state.text}
+                        </div>
+                    ) : null
+                }
+                {
+                    this.state.loading ?
+                    <Spinner animation="grow" variant="secondary" /> : null
+                }
                 <div className="row mt-4 d-flex justify-content-center align-items-center">
                     {this.state.cardsJSX}
                 </div>
