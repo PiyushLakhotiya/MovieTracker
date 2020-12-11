@@ -5,13 +5,14 @@ export const createPost = async (req, res) => {
     const body = req.body;
     const newPost = new PostMessage(body);
     // try {
-       await newPost.save();
-       const type = req.body.category;
-       await PostMessage.find()
+       
+       const id = req.body.title_id;
+       await PostMessage.find({title_id: id})
                 .then(data => {
-                    console.log(data);
-                    if(data.title_id === body.title_id) {
-                        return res.status(200).json({message: 'Already Saved'});
+                    if(data.length === 0) {
+                        newPost.save();
+                    } else {
+                        return res.status(201).json({message: 'Already Saved'});
                     }
                 })
                 .catch(error => {
@@ -30,8 +31,4 @@ export const createPost = async (req, res) => {
                 return res.status(404).json({message: error.message});
             })
         res.status(201).json(newPost);
-    // } 
-    // catch (error) {
-    //     res.status(409).json({message: error.message});
-    // }
 }
