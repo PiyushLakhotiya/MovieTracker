@@ -33,7 +33,7 @@
     z-index: 1;
 }
 
-.container .card:nth-child(1) .icon {
+/* .container .card:nth-child(1) .icon {
     background: #e07768;
 }
 
@@ -43,10 +43,10 @@
 
 .container .card:nth-child(3) .icon {
     background: #4aada9;
-}
+} */
 
 
-.container .card .icon .fa {
+/* .container .card .icon .fa {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -54,7 +54,7 @@
     font-size: 80px;
     transition: 0.7s;
     color: #fff;
-}
+} */
 
 .container .card .icon img {
     width: 280px;

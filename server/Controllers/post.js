@@ -20,6 +20,7 @@ export const createPost = async (req, res) => {
                 });
         await Category.find()
             .then(data => {
+                let type = req.body.category;
                 let isTypePresent = data.findIndex(type);
                 if(isTypePresent === -1) {
                     let newData = [...data];
