@@ -4,15 +4,14 @@ import Category from '../Models/Category.js';
 export const createPost = async (req, res) => {
     const body = req.body;
     const newPost = new PostMessage(body);
-    // try {
-       
+
        const id = req.body.title_id;
        await PostMessage.find({title_id: id})
                 .then(data => {
                     if(data.length === 0) {
                         newPost.save();
                     } else {
-                        return res.status(201).json({message: 'Already Saved'});
+                        return res.status(201).json({message: `${req.body.title} already saved`});
                     }
                 })
                 .catch(error => {
@@ -21,7 +20,7 @@ export const createPost = async (req, res) => {
         await Category.find()
             .then(data => {
                 let type = req.body.category;
-                let isTypePresent = data.findIndex(type);
+                let isTypePresent = data.findIndex(cat => cat===type);
                 if(isTypePresent === -1) {
                     let newData = [...data];
                     newData.push(type);
@@ -29,7 +28,7 @@ export const createPost = async (req, res) => {
                 }
             })
             .catch(error => {
-                return res.status(404).json({message: error.message});
+                return res.status(409).json({message: error.message});
             })
-        res.status(201).json(newPost);
+        return res.status(201).json({message: `${req.body.title} added to ${req.body.category}`});
 }

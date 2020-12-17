@@ -10,8 +10,8 @@ const navbar = props => (
             <Navbar.Toggle />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className='ml-auto'>
-                    <Nav.Link href="#">Home</Nav.Link>
-                    <Nav.Link href="#">About</Nav.Link>
+                    <Nav.Link href="/home">Home</Nav.Link>
+                    <Nav.Link href="/add">Add</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Container>

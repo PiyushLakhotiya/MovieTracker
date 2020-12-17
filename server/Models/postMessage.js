@@ -7,7 +7,7 @@ const postSchema = mongoose.Schema({
     type:String,
     category: String,
     poster: String,
-    genre: String,
+    genre: [String],
     status:String,
     date: {
         type: Date,

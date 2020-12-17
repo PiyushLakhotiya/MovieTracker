@@ -6,6 +6,12 @@
     position: relative;
     margin-top: 100px;
 }
+@media (max-width: 700px)
+{
+  .addForm{
+    margin-top: 125px;
+  }
+}
 
 .addForm .addFormButton{
     display: block;
@@ -35,11 +41,12 @@
   margin: 100px auto;
 }
 
-.alert{
+.addFormAlert{
   position: fixed;
   z-index: 2000;
-  width: 80%;
-  top: 9%;
+  width: 70%;
+  left: 15%;
+  top: 7.2%;
   animation: fade-out 2s inherit;
 }
 @keyframes fade-out{
@@ -53,120 +60,3 @@
 
 
 
-/* .l-container {
-  display: grid;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  padding: 30px;
-} */
-  
-  /* @media screen and (max-width: 760px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-} */
-
-.b-game-card {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding-bottom: 150%;
-  perspective: 800px;
-  transform: scale(0.9);
-}
-
-.check_icon{
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    z-index: 1000;
-    transform: scale(2);
-    opacity: 0;
-    /* width: 30%; */
-    /* background-color: blue; */
-    color: white !important;
-    transition: all 0.5s ;
-}
-.check_icon:hover{
-    transform: scale(3);
-    color: blue !important;
-
-}
-  
-  .b-game-card__cover {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
-    background-size: cover;
-    perspective-origin: 50% 50%;
-    transform-style: preserve-3d;
-    transform-origin: top center;
-    will-change: transform;
-    transform: skewX(0.001deg);
-    transition: transform .35s ease-in-out;
-  }
-    
-    
-    /* .b-game-card__cover::after {
-      display: block;
-      content: '';
-      position: absolute;
-      z-index: 100;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120%;
-      background: linear-gradient(226deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 35%, rgba(255,255,255,0.2) 42%, rgba(255,255,255,0) 60%);
-      transform: translateY(-20%);
-      will-change: transform;
-      transition: transform .65s cubic-bezier(0.18, 0.9, 0.58, 1);
-    } */
-    
-
-  
-  .b-game-card:hover .b-game-card__cover {
-    transform: rotateX(7deg) translateY(-6px);
-  }
-  .b-game-card:hover .check_icon{
-      opacity: 1;
-  }
-
-  /* .b-game-card__cover::after {
-      transform: translateY(0%);
-    } */
-    
-
-  
-  
-  .b-game-card::before {
-    display: block;
-    content: '';
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 6px 12px 12px rgba(0, 0, 0, 0.55);
-    will-change: opacity;
-    transform-origin: top center;
-    transform: skewX(.001deg);
-    transition: transform .35s ease-in-out, opacity .5s ease-in-out;
-  }
-  
-  .b-game-card:hover::before {
-    opacity: 0.6;
-    transform: rotateX(7deg) translateY(-6px) scale(1.05);
-  }
-  
-  
