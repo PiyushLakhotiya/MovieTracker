@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Form, Button} from 'react-bootstrap'
 import {NavLink} from 'react-router-dom'
 import './loginSignupPage.css'
+import axios from 'axios';
+import {ServerURL} from '../../constant';
 
 export class loginPage extends Component {
     state={
@@ -14,13 +16,17 @@ export class loginPage extends Component {
         let value = event.target.value;
         this.setState({[type] : value});
     }
+    onSubmitHandler = (event) => {
+        event.preventDefault();
+        axios.post(`${ServerURL}/login`, this.state);
+    }
     render() {
         return (
                 <div className="loginPage">
                     <div className="container">
                         <h2 className="YMDb">YMDb</h2>
                         <div className="loginForm">
-                            <Form className="form">
+                            <Form className="form" onSubmit = {this.onSubmitHandler}>
                                 <h2 className="text-center mb-0">Login</h2>
                                 <p className="text-center mb-4">We are glad you are back!!</p>
                                 <Form.Group controlId="formBasicEmail">
