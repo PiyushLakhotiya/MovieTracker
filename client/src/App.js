@@ -17,10 +17,10 @@ class App extends Component {
       <Navbar/>
       <Switch>
         {/* <Route exact path="/" component={Cards}></Route> */}
-        <Route path="/add" component={AddPage}></Route>
-        <Route path="/home" component={HomePage}></Route>
-        <Route path="/login" component={LoginPage}></Route>
-        <Route path="/signup" component={SignupPage}></Route>
+        <Route path = "/home" component={HomePage}></Route>
+        <Route path = "/add"  component={AddPage}></Route>
+        <Route path = "/login" component={LoginPage}></Route>
+        <Route path = "/signup" component={SignupPage}></Route>
         <Route path = "/movies" render={props => <DropDownPage type="movies" />}/>
         <Route path = "/tvshows" render={props => <DropDownPage type="tvshows" />}/>
         <Route path = "/anime" render={props => <DropDownPage type="anime" />}/>

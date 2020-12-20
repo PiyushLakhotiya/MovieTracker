@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Form, Button} from 'react-bootstrap'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import './loginSignupPage.css'
 import axios from 'axios';
 import {ServerURL} from '../../constant';
@@ -8,7 +8,9 @@ import {ServerURL} from '../../constant';
 export class loginPage extends Component {
     state={
         email: "",
-        password: ""
+        password: "",
+        userDetails: null, 
+        redirect: null
     }
 
     onChangeHandler = (event) => {
@@ -18,9 +20,23 @@ export class loginPage extends Component {
     }
     onSubmitHandler = (event) => {
         event.preventDefault();
-        axios.post(`${ServerURL}/login`, this.state);
+        axios.post(`${ServerURL}/login`, {email: this.state.email, password: this.state.password})
+            .then(data => {
+                console.log(data.data);
+                this.setState({redirect: '/home', userDetails: data.data});
+
+            })
+            .catch(error => {
+                
+            })
     }
     render() {
+        if(this.state.redirect) {
+            return <Redirect to = {{
+                pathname: this.state.redirect,
+                state: this.state.userDetails
+            }}  />
+        }
         return (
                 <div className="loginPage">
                     <div className="container">
