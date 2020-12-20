@@ -1,8 +1,7 @@
 import express from 'express';
+import {login} from '../Controllers/login.js';
 const router = express.Router();
 
-router.post('/login',passport.authenticate("local",{successRedirect:'/campgrounds',failureRedirect:'/login'}),function(req,res){
-    
-});
+router.post('/login', login);
 
 export default router;

@@ -1,4 +1,3 @@
-// import Axios from 'axios'
 import React, { Component } from 'react'
 import axios from 'axios';
 import Card from '../card3/card3';
@@ -9,7 +8,12 @@ export class homePage extends Component {
         movieData: []
     }
     componentDidMount(){
-        axios.get('http://localhost:5000/')
+        axios.get('http://localhost:5000/', {   
+                headers: { 
+                    'content-type': 'application/json',
+                    'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZGVmYWM4MmU2ZmVkM2NiZDEzYWU0YyIsImlhdCI6MTYwODQ0ODcxMiwiZXhwIjoxNjA4NDUyMzEyfQ.CbSoR6RS1DhS9RL5HuMIVUeljGxCNZoqT5lMJqtC8NY'
+                }
+            })
             .then(res => this.setState({movieData: res.data}));
     }
 

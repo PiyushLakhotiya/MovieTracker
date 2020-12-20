@@ -4,7 +4,7 @@ import Category from '../Models/Category.js';
 export const createPost = async (req, res) => {
     const body = req.body;
     const newPost = new PostMessage(body);
-
+    
        const id = req.body.title_id;
        await PostMessage.find({title_id: id})
                 .then(data => {
