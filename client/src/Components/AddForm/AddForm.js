@@ -1,8 +1,8 @@
 import React , { Component } from 'react';
-import {Card, Form, Button, Alert} from 'react-bootstrap'
+import { Form , Button, Alert} from 'react-bootstrap'
 import Spinner from 'react-bootstrap/Spinner'
 import './AddForm.css'
-import checkIcon from '../../check-circle-solid.svg'
+// import checkIcon from '../../check-circle-solid.svg'
 import Cards2 from '../cards2/cards2'
 import axios from 'axios';
 import {genre} from '../../constant'
@@ -14,7 +14,7 @@ class AddForm extends Component {
         category: 'Netflix',
         url: '',
         cardsJSX: [],
-        original_title: '',
+        // original_title: '',
         showAlert: false,
         alertMessage: '',
         loading: false,
@@ -39,11 +39,12 @@ class AddForm extends Component {
         const genres = this.genreGenerator(data.genre_ids);
         let img = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
         let name;
-        if(this.state.type === 'tv')
+        console.log('SendData', data);
+        if(this.state.type === 'anime' || this.state.type === 'tv')
             name = data.name;
         else
             name = data.title;
-        this.setState({original_title: name});
+        // this.setState({original_title: name});
         const dataObj = {
             title: name,
             description: data.overview,
@@ -66,7 +67,11 @@ class AddForm extends Component {
         console.log("category" ,this.state.category);
         event.preventDefault();
         let a = encodeURI(this.state.title)
-        let apiUrl = `https://api.themoviedb.org/3/search/${this.state.type}?api_key=da6c65cb9b8595562d8ed2df20cec5cd&language=en-US&page=1&query=${a}&include_adult=false`
+        let apiHelperKey = this.state.type;
+        if(apiHelperKey === 'anime') {
+            apiHelperKey = 'tv';
+        }
+        let apiUrl = `https://api.themoviedb.org/3/search/${apiHelperKey}?api_key=da6c65cb9b8595562d8ed2df20cec5cd&language=en-US&page=1&query=${a}&include_adult=false`
          await axios.get(apiUrl)
             .then(res => {
                      let cardsJSX = res.data.results.map(data => {
@@ -92,7 +97,7 @@ class AddForm extends Component {
         })
     }   
     render() {
-        let img = `https://image.tmdb.org/t/p/w500${this.state.url}`;
+        // let img = `https://image.tmdb.org/t/p/w500${this.state.url}`;
         return(
             <div className="container">
 
@@ -106,7 +111,7 @@ class AddForm extends Component {
                             <Form.Control as="select" size="md" onChange={(event) => this.setState({type: event.target.value})}>
                                 <option value="movie">Movie</option>
                                 <option value="tv">TV Show/Series</option>
-                                <option value="tv">Anime</option>
+                                <option value="anime">Anime</option>
                             </Form.Control>
                         </Form.Group> 
 

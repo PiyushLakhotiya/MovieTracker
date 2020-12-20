@@ -4,12 +4,12 @@ import axios from 'axios';
 import Card from '../card3/card3';
 
 
-export class homePage extends Component {
+class DropDown extends Component {
     state ={
         movieData: []
     }
     componentDidMount(){
-        axios.get('http://localhost:5000/')
+        axios.get(`http://localhost:5000/${this.props.type}`)
             .then(res => this.setState({movieData: res.data}));
     }
 
@@ -44,4 +44,4 @@ export class homePage extends Component {
     }
 }
 
-export default homePage
+export default DropDown;

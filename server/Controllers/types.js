@@ -10,8 +10,8 @@ export const allData = (req, res) => {
         })
 }
 
-export const allMovies = (req, res, type) => {
-    PostMessage.find({type: type})
+export const allMovies = (req, res, category) => {
+    PostMessage.find({type: category})
         .then((data) => {
             res.status(200).json(data);
         }) 
