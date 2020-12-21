@@ -22,9 +22,8 @@ export class loginPage extends Component {
         event.preventDefault();
         axios.post(`${ServerURL}/login`, {email: this.state.email, password: this.state.password})
             .then(data => {
-                console.log(data.data);
+                console.log(data);
                 this.setState({redirect: '/home', userDetails: data.data});
-
             })
             .catch(error => {
                 

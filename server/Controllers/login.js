@@ -16,8 +16,8 @@ export const login = async (req, res) => {
     
         const token = jwt.sign({ id: user._id }, JWT_SECRET);
         if (!token) throw Error('Couldnt sign the token');
-
-        // res.cookie('token', token, {  sameSite: false });
+        
+        res.cookie('token', token);
         
         res.status(200).json({
           token,
@@ -27,6 +27,13 @@ export const login = async (req, res) => {
             email: user.email
           }
         });
+
+
+        // res.writeHead(200, {
+        //   "Set-Cookie": `token=${token};HttpOnly`,
+        //   "Access-Control-Allow-Credential": "true"
+        // }).send();
+
       } catch (e) {
         res.status(400).json({ msg: e.message });
       }
