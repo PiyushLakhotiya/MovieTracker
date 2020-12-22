@@ -6,7 +6,8 @@ export const createPost = async (req, res) => {
     const newPost = new PostMessage(body);
     
        const id = req.body.title_id;
-       await PostMessage.find({title_id: id})
+       newPost.authorId = req.user.id;
+       await PostMessage.find({title_id: id, authorId: req.user.id})
                 .then(data => {
                     if(data.length === 0) {
                         newPost.save();

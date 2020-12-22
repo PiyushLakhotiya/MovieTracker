@@ -54,8 +54,15 @@ class AddForm extends Component {
             poster: img,
             genre: genres
         }
+        
         console.log("genres are: ", genres);
-        await axios.post('http://localhost:5000/post', dataObj)
+        await axios.post('http://localhost:5000/post', dataObj, {
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
             .then((data) => this.setState({showAlert: true, alertMessage: data.data.message}))
             .catch(error => console.log("error occured ", error.message));
     }

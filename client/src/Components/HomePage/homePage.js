@@ -7,12 +7,13 @@ export class homePage extends Component {
         movieData: [], 
     }
     componentDidMount(){
-        axios.get('http://localhost:5000/', {   
-                headers: { 
-                    'content-type': 'application/json',
-                    'x-auth-token': this.props.location.state.token
-                }
-            })
+        axios.get('http://localhost:5000/', {
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
             .then(res => this.setState({movieData: res.data}));
     }
 

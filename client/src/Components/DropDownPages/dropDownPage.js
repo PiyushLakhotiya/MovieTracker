@@ -9,7 +9,13 @@ class DropDown extends Component {
         movieData: []
     }
     componentDidMount(){
-        axios.get(`http://localhost:5000/${this.props.type}`)
+        axios.get(`http://localhost:5000/${this.props.type}`,{
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
             .then(res => this.setState({movieData: res.data}));
     }
 

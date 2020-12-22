@@ -13,11 +13,9 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    author: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
+    authorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
 });
 

@@ -20,10 +20,23 @@ export class loginPage extends Component {
     }
     onSubmitHandler = (event) => {
         event.preventDefault();
-        axios.post(`${ServerURL}/login`, {email: this.state.email, password: this.state.password})
+        axios.post(`${ServerURL}/login`, { 
+            email: this.state.email, 
+            password: this.state.password
+        },{
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
             .then(data => {
                 console.log(data);
-                this.setState({redirect: '/home', userDetails: data.data});
+                if(!data.data.user) {
+                    // set redirect to false
+                } else {
+                    this.setState({redirect: '/home', userDetails: data.data});
+                }
             })
             .catch(error => {
                 

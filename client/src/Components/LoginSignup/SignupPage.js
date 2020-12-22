@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Form, Button} from 'react-bootstrap'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import './loginSignupPage.css'
 import axios from 'axios';
 import {ServerURL} from '../../constant';
@@ -8,7 +8,8 @@ export class SignupPage extends Component {
    state={
         username : "",
         email: "",
-        password: ""
+        password: "",
+        redirect: null
     }
 
     onChangeHandler = (event) => {
@@ -16,16 +17,37 @@ export class SignupPage extends Component {
         let value = event.target.value;
         this.setState({[type] : value});
     }
-    onSubmitHandler = () => {
-        axios.post(`${ServerURL}/signup`, this.state);
+    onSubmitHandler = (event) => {
+        event.preventDefault();
+        axios.post(`${ServerURL}/signup`, this.state, {
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
+        .then(data => {
+            console.log(data);
+            if(!data.data.user) {
+                console.log('if');
+            } else {
+                console.log('else');
+                this.setState({redirect: '/home'});
+            }
+        })
     }
     render() {
+        if(this.state.redirect) {
+            return <Redirect to = {{
+                pathname: this.state.redirect
+            }}/>
+        }
         return (
             <div className="loginPage">
             <div className="container">
                 <h2 className="YMDb">YMDb</h2>
                 <div className="loginForm">
-                    <Form className="form" onSubmit={this.onSubmitHandler}>
+                    <Form className="form" onSubmit={(event) => this.onSubmitHandler(event)}>
                         <h2 className="text-center mb-0">SignUp</h2>
                         <p className="text-center mb-4">Create your account to get started!!</p>
                         

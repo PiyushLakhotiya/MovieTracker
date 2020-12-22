@@ -18,9 +18,9 @@ export const login = async (req, res) => {
         if (!token) throw Error('Couldnt sign the token');
         
         res.cookie('token', token);
+        res.header('Content-Type', 'application/json');
         
         res.status(200).json({
-          token,
           user: {
             id: user._id,
             name: user.name,

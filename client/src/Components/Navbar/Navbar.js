@@ -2,7 +2,22 @@ import React from 'react';
 import './Navbar.css'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
-const navbar = props => (
+import axios from 'axios';
+const navbar = props => {
+    const logoutHandler = (event) => {
+        event.preventDefault(); 
+        axios.get('http://localhost:5000/logout',{
+            "headers": {
+                "Accept" : "application/json",
+                "content-type": "application/json"
+            },
+            withCredentials : true 
+        })
+        .then(data => {
+            console.log(data);
+        })
+    }
+    return (
     <div className="navigation">
     <Navbar bg="dark" expand="lg" fixed="top">
         <Container>
@@ -30,13 +45,13 @@ const navbar = props => (
                 <Nav.Link >
                     <NavLink to = {{pathname: '/add', aboutProps: {data: '123'}}}>Add</NavLink>
                 </Nav.Link>
+                <button onClick = {logoutHandler}>Logout</button>
             </Nav>
-
             </Navbar.Collapse>
         </Container>
     </Navbar>
     </div>
 
-)
+)}
 
 export default navbar;
