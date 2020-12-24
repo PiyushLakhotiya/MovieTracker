@@ -6,15 +6,14 @@ import './AddForm.css'
 import Cards2 from '../cards2/cards2'
 import axios from 'axios';
 import {genre} from '../../constant'
+import Navbar from '../Navbar/Navbar'
 
 class AddForm extends Component {
     state = {
         title: '',
         type: 'movie',
-        category: 'Netflix',
         url: '',
         cardsJSX: [],
-        // original_title: '',
         showAlert: false,
         alertMessage: '',
         loading: false,
@@ -39,7 +38,7 @@ class AddForm extends Component {
         const genres = this.genreGenerator(data.genre_ids);
         let img = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
         let name;
-        console.log('SendData', data);
+        // console.log('SendData', data);
         if(this.state.type === 'anime' || this.state.type === 'tv')
             name = data.name;
         else
@@ -48,14 +47,13 @@ class AddForm extends Component {
         const dataObj = {
             title: name,
             description: data.overview,
-            category: this.state.category,
             type: this.state.type,
             title_id: data.id,
             poster: img,
             genre: genres
         }
         
-        console.log("genres are: ", genres);
+        // console.log("genres are: ", genres);
         await axios.post('http://localhost:5000/post', dataObj, {
             "headers": {
                 "Accept" : "application/json",
@@ -71,7 +69,7 @@ class AddForm extends Component {
         this.setState({text_display: false});
         this.setState({cardsJSX: []});
         this.setState({loading: true});
-        console.log("category" ,this.state.category);
+        // console.log("category" ,this.state.category);
         event.preventDefault();
         let a = encodeURI(this.state.title)
         let apiHelperKey = this.state.type;
@@ -106,6 +104,8 @@ class AddForm extends Component {
     render() {
         // let img = `https://image.tmdb.org/t/p/w500${this.state.url}`;
         return(
+            <>
+            <Navbar/>
             <div className="container">
 
                 <Alert  variant="primary" className="addFormAlert" show={this.state.showAlert} onClose={() => this.setState({showAlert: false})} dismissible>
@@ -126,14 +126,14 @@ class AddForm extends Component {
                             <Form.Control type="text" placeholder="Title..." onChange={(event) => this.setState({title: event.target.value})}/>
                         </Form.Group>     
 
-                        <Form.Group controlId="formBasicEmail">
+                        {/* <Form.Group controlId="formBasicEmail">
                             <Form.Control as="select" size="md" onChange={(event) => this.setState({category: event.target.value})}>
                                 <option value="Netflix">Netflix</option>
                                 <option value="Hollywood">Hollywood</option>
                                 <option value="Bollywood">Bollywood</option>
                                 <option value="Tollywood">Tollywood</option>
                             </Form.Control>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Button variant="primary" type="submit" className="addFormButton">
                             Search
@@ -157,7 +157,7 @@ class AddForm extends Component {
                 </div>
 
             </div>
-
+</>
 
         )
     }

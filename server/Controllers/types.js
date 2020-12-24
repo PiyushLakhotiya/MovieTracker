@@ -1,4 +1,5 @@
 import PostMessage from '../Models/postMessage.js';
+import User from '../Models/User.js'
 // {author: {id: req.user.id}}
 export const allData = (req, res) => {
     PostMessage.find({authorId: req.user.id})
@@ -22,3 +23,22 @@ export const allMovies = (req, res, category) => {
         })
 }
 
+export const search = (req, res) => {
+    // console.log(req.body);
+    const search = req.body.search;
+    User.find({username: search}).select(['-password'])
+        .then((data) => {
+            if(data.length===0)
+            return res.status(200).json({
+                msg : "user not found"
+            })
+            PostMessage.find({authorId: data[0]._id})
+                .then((userData) => {
+                    return res.status(200).json({
+                        userData: userData
+                    })
+                })
+        })
+        .catch(err => res.status(400).json({msg :err.message}))
+
+}

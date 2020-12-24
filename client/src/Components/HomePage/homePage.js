@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Card from '../card3/card3';
+import Navbar from '../Navbar/Navbar'
 
 export class homePage extends Component {
     state ={
@@ -27,6 +28,8 @@ export class homePage extends Component {
         //     );
         // })
         return (
+            <>
+            <Navbar/>
             <div className="container" style={{'marginTop': '100px'}}>
                 <div className="row">
                     {
@@ -44,6 +47,7 @@ export class homePage extends Component {
                     }
                 </div>
             </div>
+            </>
         )
     }
 }

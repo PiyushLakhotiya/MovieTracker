@@ -82,7 +82,7 @@ export class SignupPage extends Component {
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="loginBtn mt-2">
-                            Login
+                            SignUp
                         </Button>
                         <p className="mt-2">Already have an account? <NavLink to="/login">Login</NavLink></p>
                     </Form>

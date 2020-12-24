@@ -78,3 +78,22 @@ export const genre = [
   ];
   
   export const ServerURL = 'http://localhost:5000'
+
+  
+  export const isLogin = () => {
+    let cookie = document.cookie.split(';');
+    let token = cookie.filter(x => {
+      let indexOfx = x.indexOf("token");
+      return (indexOfx!==-1)
+    })
+    if(token.length)
+    {
+        return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  
+  
